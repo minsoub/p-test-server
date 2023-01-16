@@ -9,5 +9,17 @@ class WebsiteUser(HttpUser):
 
     @task(1)
     def get_index(self):
-        self.client.get("/", headers=default_headers)
+        self.client.get("/api/v1/cms/notices/bf?pageNo=1&pageSize=15", headers=default_headers)
+
+    @task(2)
+    def get_category_notices(self):
+        self.client.get("/api/v1/cms/notices/bf?categoryId=3&pageNo=1&pageSize=15", headers=default_headers)
+
+    @task(3)
+    def get_search_notices(self):
+        self.client.get("/api/v1/cms/notices/bf?searchText=모네로&pageNo=1&pageSize=15", headers=default_headers)
+
+    @task(4)
+    def get_notice(self):
+        self.client.get("/api/v1/cms/notices/1643453", headers=default_headers)
 
