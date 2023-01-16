@@ -25,5 +25,6 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - echo "Deploying application..."
     - chmod 400 $SSH_KEY_FILE
-    - scp -o StrictHostKeyChecking=no -i $SSH_KEY_FILE ./locustfile.py ec2-user@ec2-3-34-144-36.ap-northeast-2.compute.amazonaws.com:/home/ec2-user/mqtt-locust/locustfile.py
+    - scp -o StrictHostKeyChecking=no -i $SSH_KEY_FILE ./locustfile.py ec2-user@$PERFORM_SERVER:/home/ec2-user/mqtt-locust/locustfile.py
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY_FILE ec2-user@$PERFORM_SERVER 'bash ~/.ssh/deploy.sh'
     - echo "Application successfully deployed."
